@@ -58,6 +58,18 @@ main p {
     text-align: center;
 }
 
+form ul {
+    list-style: none;
+    padding: 0;
+}
+
+form li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
 .submit {
     background-color: white;
     color: #333;
@@ -79,7 +91,11 @@ main p {
 }
 
 .password, .username, .email {
-    width: 50%;
+    width: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
 }
 
 input {
