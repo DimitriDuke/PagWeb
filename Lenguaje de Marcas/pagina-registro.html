@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register - Age Stone</title>
+        <link rel="stylesheet" href="./style/pagina-login.css">
+        <link rel="stylesheet" href="./style/menu-dropdown.css">
+    </head>
+    <body>
+        <header>
+            <nav class="dropdown-menu">
+                <button class="dropbtn">☰ Menú</button>
+                <div class="dropdown-content">
+                  <a href="index.html">Inicio</a>
+                  <a href="clasificacion.html">Clasificación</a>
+                  <a href="informacion.html">Información</a>
+                  <a href="como-jugar.html">Cómo Jugar</a>
+                </div>
+            </nav>
+            <h1>Registrarse</h1>
+        </header>
+        <main>
+
+            <p>Esta es la pagina para registrarse</p>
+
+            <div class="container">
+            <div class="header">
+            <h1>Registrarse</h1>
+            </div>
+
+                <form name="login" onsubmit="return validateForm() ;" method="post">
+
+                    <ul>
+                    <li>Username: <input class="username" type="text" name="username">
+                    </li>
+
+                    <li>Correo Electronico: <input class="email" type="text" name="email">
+                    </li>
+
+                    <li>Password: <input class="password" type="password" name="password">
+                    </li>
+                    </ul>
+
+                    <input type="button" class="submit" value="Registrarse" name="submit"  onclick="validate()">
+                </form>
+                <a href="pagina-login.html" id="mirror">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
+        </main>
+    </body>
+</html>
