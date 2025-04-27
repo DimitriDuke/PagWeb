@@ -115,3 +115,17 @@ main p {
     font-size: 18px;
     line-height: 1.6;
 }
+
+.apartado {
+    margin-top: 250px;
+    color: #4CAF50;
+    background-color: #333;
+    transition: all 0.5s linear;
+
+    opacity: 0;
+
+}
+
+.aparecer-apartado {
+    opacity: 1;
+}
