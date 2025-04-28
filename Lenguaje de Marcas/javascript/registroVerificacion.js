@@ -3,7 +3,7 @@ const form = document.getElementById('paginaRegistro');
             form.addEventListener('submit', async function(event){
                 event.preventDefault();
 
-                var mensajeError = document.querySelector('.apartadoError');
+                const mensajeError = document.querySelector('.apartadoError');
 
                 const usernameInput = document.getElementById('username');
                 const emailInput = document.getElementById('email');
@@ -14,6 +14,7 @@ const form = document.getElementById('paginaRegistro');
                 const password = passwordInput.value;
 
                 const emailVer = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const passwordVer = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
                 function mostrarError(mensaje, inputElement) {
                     mensajeError.classList.remove("desaparecer-apartadoError");
@@ -27,20 +28,20 @@ const form = document.getElementById('paginaRegistro');
                         mensajeError.classList.add("desaparecer-apartadoError");
             
                         inputElement.classList.remove("error-input");
-                    }, 3000);
+                    }, 5000);
                 }
 
                 if (username.length < 3)
                 {
-                    mostrarError ('Por favor, ingresa un nombre de usuario valido', usernameInput);
+                    mostrarError ('Por favor ingresa un nombre de usuario valido', usernameInput);
                     return;
                 } if (!emailVer.test(email))
                 {
-                    mostrarError ('Por favor, ingresa un correo valido', emailInput);
+                    mostrarError ('Por favor ingresa un correo valido', emailInput);
                     return;
-                } if (password.length < 6)
+                } if (!passwordVer.test(password))
                 {
-                    mostrarError ('Por favor, ingresa una contraseña valida', passwordInput);
+                    mostrarError ('Por favor ingresa una contraseña con al menos 6 caracteres, una letra mayuscula y un numero', passwordInput);
                     return;
                 } else
                 {
