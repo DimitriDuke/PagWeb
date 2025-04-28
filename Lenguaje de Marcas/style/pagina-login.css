@@ -125,3 +125,25 @@ li {
     margin-left: auto;
     margin-right: auto;
 }
+
+.apartadoError {
+    background-color: #cc1616;
+    border: 1px solid #333;
+    color: white;
+    height: auto;
+    text-align: center;
+    transition: all 0.5s linear;
+
+    opacity: 0;
+}
+
+.aparecer-apartadoError {
+    opacity: 1;
+}
+
+.desaparecer-apartadoError {
+    transition: all 0.5s linear;
+
+    opacity: 0;
+}
+

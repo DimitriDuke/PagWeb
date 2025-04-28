@@ -9,7 +9,7 @@ window.onscroll = function()
     var distancia = window.innerHeight - apartado.getBoundingClientRect().top;
     if(distancia >= 38)
     {
-        apartado.classList.add("aparecer-apartado")
+        apartado.classList.add("aparecer-apartado");
     }
 
     console.log(distancia);
