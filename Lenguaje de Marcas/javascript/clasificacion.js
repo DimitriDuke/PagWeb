@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // URL de la API
-    const apiUrl = 'http://192.168.92.129:8080/api/top-jugadores';
+    const apiUrl = 'http://192.168.126.129:8080/api/top-jugadores';
     
     console.log("Intentando conectar a:", apiUrl);
     

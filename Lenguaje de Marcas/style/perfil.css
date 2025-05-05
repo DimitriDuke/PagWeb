@@ -117,3 +117,190 @@
     top: 20px;
     right: 20px;
 }
+
+.partidas-table-container {
+    margin-top: 20px;
+}
+
+.partidas-table-container h3 {
+    color: #4CAF50;
+    border-bottom: 1px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.partidas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background-color: #222;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.partidas-table th,
+.partidas-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.partidas-table th {
+    background-color: #3a3a3a;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.partidas-table tr:last-child td {
+    border-bottom: none;
+}
+
+.partidas-table tr:hover {
+    background-color: #444;
+}
+
+/* Estilos para los niveles */
+.nivel-A {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.nivel-B {
+    color: #2196F3;
+    font-weight: bold;
+}
+
+.nivel-C {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+.nivel-D {
+    color: #f44336;
+    font-weight: bold;
+}
+
+#no-partidas {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+    font-style: italic;
+}
+
+#loading-partidas {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+}
+
+/* Hacer la tabla responsiva */
+@media screen and (max-width: 768px) {
+    .partidas-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+/* Estilos para sección de récords */
+.records-container {
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.records-container h3 {
+    color: #4CAF50;
+    border-bottom: 1px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.records-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.record-card {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 15px;
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border: 1px solid #444;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.record-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.record-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.record-title {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.record-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.record-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.record-highlight {
+    color: #FFD700; /* Color dorado para destacar */
+}
+
+/* Estilos para resaltar filas de récords en la tabla */
+.record-puntuacion-fila {
+    background-color: rgba(255, 215, 0, 0.1) !important; /* Fondo dorado tenue */
+}
+
+.record-tiempo-fila {
+    background-color: rgba(33, 150, 243, 0.1) !important; /* Fondo azul tenue */
+}
+
+.record-puntuacion-celda {
+    color: #FFD700 !important;
+    font-weight: bold;
+    position: relative;
+}
+
+.record-tiempo-celda {
+    color: #2196F3 !important;
+    font-weight: bold;
+    position: relative;
+}
+
+.record-puntuacion-celda::after {
+    content: " 🏆";
+    font-size: 14px;
+}
+
+.record-tiempo-celda::after {
+    content: " ⏱️";
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .records-grid {
+        flex-direction: column;
+    }
+}

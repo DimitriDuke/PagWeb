@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil - Stone Age</title>
         <link rel="stylesheet" href="./style/index.css">
-        <link rel="stylesheet" href="./style/menu-dropdown.css">
+        <!--<link rel="stylesheet" href="./style/menu-dropdown.css">-->
         <link rel="stylesheet" href="./style/perfil.css">
+        <link rel="stylesheet" href="./style/index.css">
     </head>
     <body>
         <header>
@@ -45,34 +46,73 @@
                     <h2>Estadísticas de Juego</h2>
                     <div id="loading-stats">Cargando estadísticas...</div>
                     <div id="estadisticas" style="display: none;">
-                        <p><strong>Total de partidas:</strong> <span id="total-partidas">0</span></p>
-                        <p><strong>Promedio de puntos:</strong> <span id="promedio-puntos">0</span></p>
-                        <p><strong>Mejor nivel alcanzado:</strong> <span id="mejor-nivel">-</span></p>
+                        
+<div class="records-container">
+    <h3>Récords Personales</h3>
+    <div class="records-grid">
+        <div class="record-card">
+            <div class="record-icon">🏆</div>
+            <div class="record-title">Mejor Puntuación</div>
+            <div id="mejor-puntuacion" class="record-value">0</div>
+            <div id="mejor-puntuacion-fecha" class="record-date">-</div>
+        </div>
+        <div class="record-card">
+            <div class="record-icon">⏱️</div>
+            <div class="record-title">Partida Más Rápida</div>
+            <div id="mejor-tiempo" class="record-value">-</div>
+            <div id="mejor-tiempo-fecha" class="record-date">-</div>
+        </div>
+    </div>
+</div>
+                
+<div class="partidas-table-container">
+    <h3>Historial de partidas</h3>
+    <div id="loading-partidas">Cargando historial de partidas...</div>
+    <div id="partidas-container" style="display: none;">
+        <table id="tabla-partidas" class="partidas-table">
+            <thead>
+                <tr>
+                    <th>Partida</th>
+                    <th>Fecha</th>
+                    <th>Nivel</th>
+                    <th>Kills</th>
+                    <th>Muertes</th>
+                    <th>Tiempo (s)</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody id="partidas-body">
+                <!-- Aquí se cargarán las partidas dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+    <div id="no-partidas" style="display: none;">No hay partidas registradas.</div>
+</div>
                     </div>
                 </div>
             </div>
             
             <!-- Modal para editar perfil -->
-            <div id="modal-editar" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Editar Perfil</h2>
-                    <form id="form-editar-perfil">
-                        <div class="form-group">
-                            <label for="edit-email">Email:</label>
-                            <input type="email" id="edit-email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-edad">Edad:</label>
-                            <input type="number" id="edit-edad" min="1" max="120">
-                        </div>
-                        <button type="submit" class="btn">Guardar Cambios</button>
-                    </form>
-                </div>
+           <!-- Modal para editar perfil -->
+<div id="modal-editar" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Perfil</h2>
+        <form id="form-editar-perfil">
+            <div class="form-group">
+                <label for="edit-nickname">Nickname:</label>
+                <input type="text" id="edit-nickname" required>
             </div>
-        </main>
+            <div class="form-group">
+                <label for="edit-email">Email:</label>
+                <input type="email" id="edit-email" required>
+            </div>
+            <button type="submit" class="btn">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
 
-        <script src="javascript/verificarAuth.js"></script>
+        <script src="javascript/auth-manager.js"></script>
         <script src="javascript/perfil.js"></script>
     </body>
 </html>

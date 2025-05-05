@@ -1,11 +1,5 @@
-// Archivo: javascript/loginVerificacion.js
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('paginaLogin');
-    
-    if (!form) {
-        console.error('No se pudo encontrar el formulario de login');
-        return;
-    }
 
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
@@ -18,32 +12,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const nickname = nicknameInput.value;
         const password = passwordInput.value;
 
+        // Función para mostrar errores
         function mostrarError(mensaje, inputElement) {
             mensajeError.classList.remove("desaparecer-apartadoError");
             mensajeError.classList.add("aparecer-apartadoError");
             mensajeError.innerHTML = mensaje;
             
-            inputElement.classList.add("error-input");
-            
+            if (inputElement) {
+                inputElement.classList.add("error-input");
+            }
+
             setTimeout(() => {
                 mensajeError.classList.remove("aparecer-apartadoError");
                 mensajeError.classList.add("desaparecer-apartadoError");
 
-                inputElement.classList.remove("error-input");
+                if (inputElement) {
+                    inputElement.classList.remove("error-input");
+                }
             }, 5000);
         }
 
-        function mostrarExito(mensaje) {
-            mensajeExito.textContent = mensaje;
-            mensajeExito.style.display = 'block';
-            
-            setTimeout(() => {
-                mensajeExito.style.display = 'none';
-                // Redirigir a la página de perfil después de mostrar el mensaje
-                window.location.href = "perfil.html";
-            }, 2000);
-        }
-
+        // Validación de campos
         if (nickname.length <= 0) {
             mostrarError('Uno o más campos están vacíos', nicknameInput);
             return;
@@ -55,44 +44,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            console.log('Enviando solicitud de login...');
-            const respuesta = await fetch('http://192.168.92.129:8080/api/login', {
+            console.log('Enviando solicitud de login con nickname:', nickname);
+            
+            const respuesta = await fetch('http://192.168.126.129:8080/api/login', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    nickname: nickname, 
+                    nickname: nickname,
                     password: password 
                 })
             });
             
-            console.log('Respuesta recibida:', respuesta);
+            console.log('Respuesta completa:', respuesta);
+            
+            if (!respuesta.ok) {
+                throw new Error(`¡Error HTTP! estado: ${respuesta.status}`);
+            }
+            
             const resultado = await respuesta.json();
-            console.log('Datos de respuesta:', resultado);
+            console.log('Datos de respuesta JSON:', resultado);
             
             if (resultado.status === "Success") {
-                // Guardar el token y la información del usuario en localStorage
-                localStorage.setItem('token', resultado.token);
-                localStorage.setItem('usuario', JSON.stringify(resultado.jugador));
+                // Acceder al token dentro de data si existe
+                console.log('Datos en la respuesta:', resultado.data);
+                
+                // Buscar token en data
+                const token = resultado.token || (resultado.data && resultado.data.token);
+                console.log("Login exitoso, guardando token:", token);
+                
+                if (token) {
+                    localStorage.setItem('token', token);
+                } else {
+                    console.warn("No se recibió token en la respuesta");
+                    // Guardamos un token vacío para evitar errores
+                    localStorage.setItem('token', 'temp_token');
+                }
+                
+                // Guardar directamente el objeto data como usuario si no hay jugador específico
+                if (resultado.jugador) {
+                    localStorage.setItem('usuario', JSON.stringify(resultado.jugador));
+                    console.log("Información de usuario guardada:", resultado.jugador);
+                } else if (resultado.data) {
+                    localStorage.setItem('usuario', JSON.stringify(resultado.data));
+                    console.log("Información de usuario guardada desde data:", resultado.data);
+                } else {
+                    console.warn("No se recibió información del jugador en la respuesta");
+                    // Crear objeto de usuario mínimo
+                    localStorage.setItem('usuario', JSON.stringify({nickname: nickname}));
+                }
                 
                 // Mostrar mensaje de éxito
-                mostrarExito('¡Inicio de sesión exitoso! Redirigiendo...');
+                alert('¡Inicio de sesión exitoso! Redirigiendo a tu perfil...');
+                
+                // Redirigir directamente a la página de perfil
+                window.location.href = "perfil.html";
+                
+                return false;
             } else {
-                // Si hay un error, mostrar el mensaje de error
-                mostrarError(resultado.message || 'Credenciales incorrectas', document.querySelector('.submit'));
+                mostrarError(resultado.message || 'Credenciales incorrectas', nicknameInput);
             }
         } catch (error) {
             console.error('Error completo:', error);
-            mensajeError.classList.remove("desaparecer-apartadoError");
-            mensajeError.classList.add("aparecer-apartadoError");
-            mensajeError.innerHTML = 'Error de conexión. Intenta más tarde.';
-
-            setTimeout(() => {
-                mensajeError.classList.remove("aparecer-apartadoError");
-                mensajeError.classList.add("desaparecer-apartadoError");
-            }, 3000);
+            mostrarError('Error de conexión. Intenta más tarde.', document.querySelector('.submit'));
         }
     });
 });

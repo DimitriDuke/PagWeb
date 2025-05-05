@@ -58,7 +58,7 @@ form.addEventListener('submit', async function(event){
     
     try {
         // Cambiar la URL para que coincida con tu API
-        const respuesta = await fetch('http://192.168.92.129:8080/api/anadirJugador', {
+        const respuesta = await fetch('http://192.168.126.129:8080/api/anadirJugador', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             // Cambiar los nombres de las propiedades para que coincidan con el backend
