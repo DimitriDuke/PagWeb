@@ -31,14 +31,26 @@ const form = document.getElementById('paginaRegistro');
                     }, 5000);
                 }
 
-                if (username.length < 3)
+                if (username.length <= 0)
+                {
+                    mostrarError ('Uno o mas campos estan vacios', usernameInput);
+                    return;
+                } if (username.length < 5)
                 {
                     mostrarError ('Por favor ingresa un nombre de usuario valido', usernameInput);
                     return;
+                } if (email.length <= 0)
+                {
+                        mostrarError ('Uno o mas campos estan vacios', emailInput);
+                        return;
                 } if (!emailVer.test(email))
                 {
                     mostrarError ('Por favor ingresa un correo valido', emailInput);
                     return;
+                } if (password.length <= 0)
+                {
+                        mostrarError ('Uno o mas campos estan vacios', passwordInput);
+                        return;
                 } if (!passwordVer.test(password))
                 {
                     mostrarError ('Por favor ingresa una contraseña con al menos 6 caracteres, una letra mayuscula y un numero', passwordInput);
