@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CORS</title>
+</head>
+<body>
+    <h1>Prueba de CORS</h1>
+    <button id="testBtn">Probar conexión API</button>
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('testBtn').addEventListener('click', function() {
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = 'Conectando...';
+            
+            // URL de tu API
+            const apiUrl = 'http://192.168.92.129:8080/api/top-jugadores';
+            
+            fetch(apiUrl)
+                .then(response => {
+                    resultadoDiv.innerHTML += '<br>Status: ' + response.status;
+                    return response.json();
+                })
+                .then(data => {
+                    resultadoDiv.innerHTML += '<br>Datos recibidos correctamente';
+                    resultadoDiv.innerHTML += '<br>Número de jugadores: ' + 
+                        (data.data && Array.isArray(data.data) ? data.data.length : 'desconocido');
+                })
+                .catch(error => {
+                    resultadoDiv.innerHTML += '<br>Error: ' + error.message;
+                    
+                    if (error.message.includes('CORS')) {
+                        resultadoDiv.innerHTML += '<br><strong>Problema de CORS detectado</strong>';
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

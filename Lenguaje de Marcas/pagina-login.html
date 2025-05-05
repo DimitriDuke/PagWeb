@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="./style/menu-dropdown.css">
     </head>
     <body>
-
         <header>
             <nav class="dropdown-menu">
                 <button class="dropbtn">☰ Menú</button>
@@ -23,28 +22,28 @@
         </header>
 
         <main>
-
-            <p>Esta es la pagina para hacer login</p>
-
+            <p>Esta es la página para hacer login</p>
             <div class="container">
-            <div class="apartadoError"></div>
-            <div class="header">
-            <h1>Iniciar Sesión</h1>
-            </div>
+                <div class="apartadoError"></div>
+                <div class="header">
+                    <h1>Iniciar Sesión</h1>
+                </div>
 
                 <form name="login" id="paginaLogin" method="POST">
-
                     <ul>
-                    <li>Username: <input id="username" class="username" type="text" name="username">
-                    </li>
+                        <li>Username: <input id="username" class="username" type="text" name="username">
+                        </li>
 
-                    <li>Password: <input id="password" class="password" type="password" name="password">
-                    </li>
+                        <li>Password: <input id="password" class="password" type="password" name="password">
+                        </li>
                     </ul>
 
-                    <input type="submit" class="submit" value="Iniciar Sesion" name="submit">
+                    <input type="submit" class="submit" value="Iniciar Sesión" name="submit">
                 </form>
-                <a href="pagina-registro.html" id="mirror">¿No tienes cuenta? Registrate</a>
+                <a href="pagina-registro.html" id="mirror">¿No tienes cuenta? Regístrate</a>
+                
+                <!-- Contenedor para mensaje de éxito -->
+                <div id="mensajeExito" class="mensaje-exito" style="display: none;"></div>
             </div>
         </main>
 

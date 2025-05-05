@@ -7,49 +7,76 @@
   <link rel="stylesheet" href="./style/clasificacion.css">
   <link rel="stylesheet" href="./style/menu-dropdown.css">
   <link rel="stylesheet" href="./style/menu-registro.css">
+  <style>
+    /* Estilos adicionales para el ranking */
+    .top-1 {
+      background-color: rgba(255, 215, 0, 0.3) !important; /* Dorado */
+    }
+    .top-2 {
+      background-color: rgba(192, 192, 192, 0.3) !important; /* Plateado */
+    }
+    .top-3 {
+      background-color: rgba(205, 127, 50, 0.3) !important; /* Bronce */
+    }
+    table {
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+    }
+    th {
+      text-align: center;
+      background-color: #4CAF50;
+    }
+    td {
+      text-align: center;
+    }
+    .ranking-titulo {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: #333;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
-  <body>
-    <header>
-      <div class="header-buttons">
-        <a id="register-button" href="pagina-registro.html">Registrarse</a>
-        <a id="login-button" href="pagina-login.html">Iniciar sesión</a>
+<body>
+  <header>
+    <div class="header-buttons">
+      <a id="register-button" href="pagina-registro.html">Registrarse</a>
+      <a id="login-button" href="pagina-login.html">Iniciar sesión</a>
+    </div>
+
+    <nav class="dropdown-menu">
+      <button class="dropbtn">☰ Menú</button>
+      <div class="dropdown-content">
+        <a href="index.html">Inicio</a>
+        <a href="clasificacion.html">Clasificación</a>
+        <a href="informacion.html">Información</a>
+        <a href="como-jugar.html">Cómo Jugar</a>
       </div>
+    </nav>
+    <h1>Clasificación</h1>
+  </header>
 
-      <nav class="dropdown-menu">
-        <button class="dropbtn">☰ Menú</button>
-        <div class="dropdown-content">
-          <a href="index.html">Inicio</a>
-          <a href="clasificacion.html">Clasificación</a>
-          <a href="informacion.html">Información</a>
-          <a href="como-jugar.html">Cómo Jugar</a>
-        </div>
-      </nav>
-      <h1>Clasificación</h1>
-    </header>
-
-    <main>
-      <table>
-        <thead>
-          <tr>
-            <th>Posición</th>
-            <th>Jugador</th>
-            <th>Puntos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Jugador1</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jugador2</td>
-            <td>80</td>
-          </tr>
-        </tbody>
-      </table>
-    </main>
-    
-  </body>
+  <main>
+    <div class="ranking-titulo">Top 10 Jugadores</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Posición</th>
+          <th>Jugador</th>
+          <th>Puntuación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se cargarán los datos desde el script -->
+        <tr>
+          <td colspan="3">Cargando ranking...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  
+  <!-- Script para cargar los datos - NOMBRE CORREGIDO -->
+  <script src="./javascript/clasificacion.js"></script>
+</body>
 </html>

@@ -165,4 +165,12 @@ li {
 
     opacity: 0;
 }
+.mensaje-exito {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
 

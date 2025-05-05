@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de respuesta API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+            max-height: 400px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Visualizador de respuesta API</h1>
+    <button id="fetchBtn">Obtener datos de la API</button>
+    <h2>Respuesta de la API:</h2>
+    <pre id="respuesta">Haz clic en el botón para obtener datos...</pre>
+
+    <script>
+        document.getElementById('fetchBtn').addEventListener('click', function() {
+            const respuestaElement = document.getElementById('respuesta');
+            respuestaElement.textContent = 'Conectando...';
+            
+            // URL de la API
+            const apiUrl = 'http://192.168.92.129:8080/api/top-jugadores';
+            
+            fetch(apiUrl)
+                .then(response => {
+                    respuestaElement.textContent += '\nCódigo de estado: ' + response.status;
+                    return response.json();
+                })
+                .then(data => {
+                    // Formatear la respuesta como JSON con indentación
+                    const dataFormatted = JSON.stringify(data, null, 2);
+                    respuestaElement.textContent = dataFormatted;
+                    
+                    // Agregar información adicional
+                    if (data.data && Array.isArray(data.data)) {
+                        respuestaElement.textContent += '\n\n--- ANÁLISIS ---';
+                        respuestaElement.textContent += '\nNúmero de jugadores: ' + data.data.length;
+                        
+                        // Examinar la estructura del primer jugador
+                        if (data.data.length > 0) {
+                            respuestaElement.textContent += '\nPropiedades del primer jugador:';
+                            for (const prop in data.data[0]) {
+                                respuestaElement.textContent += '\n- ' + prop + ': ' + 
+                                    (typeof data.data[0][prop] === 'object' ? 
+                                        'Objeto/Array' : typeof data.data[0][prop]);
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    respuestaElement.textContent = 'Error: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
