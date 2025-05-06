@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Intentando cargar datos desde API...');
             const nickname = datosUsuario.nickname;
             
-            const respuesta = await fetch(`http://192.168.92.130:8080/api/jugador/nickname/${nickname}`, {
+            const respuesta = await fetch(`http://192.168.126.130:8080/api/jugador/nickname/${nickname}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -323,7 +323,7 @@ async function eliminarCuenta() {
         mostrarError('Eliminando cuenta...', false);
         
         // Llamar a la API para eliminar el jugador
-        const respuesta = await fetch(`http://192.168.92.130:8080/api/eliminarJugador/${usuarioId}`, {
+        const respuesta = await fetch(`http://192.168.126.130:8080/api/eliminarJugador/${usuarioId}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -373,7 +373,7 @@ async function eliminarCuenta() {
             
             console.log('Datos para actualizar:', { email, edad });
             
-            const respuesta = await fetch(`http://192.168.92.130:8080/api/modificarJugador/${usuarioId}`, {
+            const respuesta = await fetch(`http://192.168.126.130:8080/api/modificarJugador/${usuarioId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, edad })

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 
-    const apiUrl = 'http://192.168.92.130:8080/api/top-jugadores';
+    const apiUrl = 'http://192.168.126.130:8080/api/top-jugadores';
 
     fetch(apiUrl)
         .then(function(response) {

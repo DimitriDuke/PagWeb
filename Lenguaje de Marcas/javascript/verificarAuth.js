@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function cargarDatosPerfil() {
         try {
-            const respuesta = await fetch('http://192.168.92.130:8080/api/perfil', {
+            const respuesta = await fetch('http://192.168.126.130:8080/api/perfil', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

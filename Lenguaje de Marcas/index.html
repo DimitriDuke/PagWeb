@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./style/index.css">
   <link rel="stylesheet" href="./style/menu-dropdown.css">
   <link rel="stylesheet" href="./style/menu-registro.css">
+  <link rel="stylesheet" href="./style/chat-flotante.css">
 </head>
   <body>
 
@@ -59,11 +60,71 @@
         </div>
       </section>
     </main>
+
+    <!-- Este código debe incluirse al final del body en tus páginas HTML -->
+<div id="chat-flotante" class="chat-container">
+  <!-- Botón minimizado del chat -->
+  <div class="chat-button" id="chat-button">
+    <span class="chat-icon">💬</span>
+    <span class="chat-badge" id="chat-badge">0</span>
+  </div>
+  
+  <!-- Panel del chat -->
+  <div class="chat-panel" id="chat-panel">
+    <!-- Cabecera del chat -->
+    <div class="chat-header">
+      <div class="chat-title">Mensajes</div>
+      <div class="chat-actions">
+        <button class="chat-minimize" id="chat-minimize">−</button>
+      </div>
+    </div>
+    
+    <!-- Lista de conversaciones (vista principal) -->
+    <div class="chat-conversations" id="chat-conversations">
+      <!-- Botón para nuevo mensaje -->
+      <div class="chat-toolbar">
+        <button id="new-message-btn" class="new-message-btn">Nuevo mensaje</button>
+      </div>
+      
+      <!-- Contenedor de búsqueda de usuarios -->
+      <div class="chat-search-container" id="chat-search-container" style="display: none;">
+        <input type="text" id="user-search" placeholder="Buscar usuario...">
+        <div class="search-results" id="search-results">
+          <!-- Aquí aparecerán los resultados de la búsqueda -->
+        </div>
+        <button id="cancel-search" class="cancel-search-btn">Cancelar</button>
+      </div>
+      
+      <div class="chat-loading" id="chat-loading-conversations">Cargando conversaciones...</div>
+      <div class="chat-no-messages" id="chat-no-messages">No tienes conversaciones</div>
+      <ul class="chat-users-list" id="chat-users-list">
+        <!-- Aquí se cargarán los usuarios con conversaciones -->
+      </ul>
+    </div>
+    
+    <!-- Vista de conversación específica -->
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-conversation-header">
+        <button class="chat-back" id="chat-back">←</button>
+        <div class="chat-user-name" id="chat-current-user">Usuario</div>
+      </div>
+      <div class="chat-loading" id="chat-loading-messages">Cargando mensajes...</div>
+      <div class="chat-message-container" id="chat-message-container">
+        <!-- Aquí se cargarán los mensajes -->
+      </div>
+      <div class="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Escribe un mensaje...">
+        <button id="chat-send">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
     
     <!-- Scripts originales -->
     <script src="javascript/fade.js"></script>
     
     <!-- Script de autenticación -->
     <script src="javascript/auth-manager.js"></script>
+    <script src="javascript/chat-flotante.js"></script>
   </body>
 </html>

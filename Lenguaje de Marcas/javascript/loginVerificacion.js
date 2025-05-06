@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             console.log('Enviando solicitud de login con nickname:', nickname);
             
-            const respuesta = await fetch('http://192.168.92.1:8080/api/login', {
+            const respuesta = await fetch('http://192.168.126.130:8080/api/login', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

@@ -6,6 +6,7 @@
     <title>Información - Stone Age</title>
     <link rel="stylesheet" href="./style/informacion.css">
     <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="./style/chat-flotante.css">
 
   </head>
   <body>
@@ -39,9 +40,68 @@
       </section>
 
     </main>
+    
+<div id="chat-flotante" class="chat-container">
+ 
+  <div class="chat-button" id="chat-button">
+    <span class="chat-icon">💬</span>
+    <span class="chat-badge" id="chat-badge">0</span>
+  </div>
+  
+
+  <div class="chat-panel" id="chat-panel">
+   
+    <div class="chat-header">
+      <div class="chat-title">Mensajes</div>
+      <div class="chat-actions">
+        <button class="chat-minimize" id="chat-minimize">−</button>
+      </div>
+    </div>
+    
+ 
+    <div class="chat-conversations" id="chat-conversations">
+     
+      <div class="chat-toolbar">
+        <button id="new-message-btn" class="new-message-btn">Nuevo mensaje</button>
+      </div>
+      
+     
+      <div class="chat-search-container" id="chat-search-container" style="display: none;">
+        <input type="text" id="user-search" placeholder="Buscar usuario...">
+        <div class="search-results" id="search-results">
+          
+        </div>
+        <button id="cancel-search" class="cancel-search-btn">Cancelar</button>
+      </div>
+      
+      <div class="chat-loading" id="chat-loading-conversations">Cargando conversaciones...</div>
+      <div class="chat-no-messages" id="chat-no-messages">No tienes conversaciones</div>
+      <ul class="chat-users-list" id="chat-users-list">
+       
+      </ul>
+    </div>
+    
+   
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-conversation-header">
+        <button class="chat-back" id="chat-back">←</button>
+        <div class="chat-user-name" id="chat-current-user">Usuario</div>
+      </div>
+      <div class="chat-loading" id="chat-loading-messages">Cargando mensajes...</div>
+      <div class="chat-message-container" id="chat-message-container">
+     
+      </div>
+      <div class="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Escribe un mensaje...">
+        <button id="chat-send">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="javascript/fade.js"></script>
 
     <script src="javascript/auth-manager.js"></script>
+    <script src="javascript/chat-flotante.js"></script>
   </body>
 </html>

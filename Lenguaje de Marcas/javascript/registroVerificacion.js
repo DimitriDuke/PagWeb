@@ -58,7 +58,7 @@ form.addEventListener('submit', async function(event){
     
     try {
        
-        const respuesta = await fetch('http://192.168.92.130:8080/api/anadirJugador', {
+        const respuesta = await fetch('http://192.168.126.130:8080/api/anadirJugador', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
       
