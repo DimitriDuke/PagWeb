@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nickname = nicknameInput.value;
         const password = passwordInput.value;
 
-        // Función para mostrar errores
+
         function mostrarError(mensaje, inputElement) {
             mensajeError.classList.remove("desaparecer-apartadoError");
             mensajeError.classList.add("aparecer-apartadoError");
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 5000);
         }
 
-        // Validación de campos
+        // Validacion de campos
         if (nickname.length <= 0) {
             mostrarError('Uno o más campos están vacíos', nicknameInput);
             return;
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             console.log('Enviando solicitud de login con nickname:', nickname);
             
-            const respuesta = await fetch('http://192.168.126.129:8080/api/login', {
+            const respuesta = await fetch('http://192.168.92.1:8080/api/login', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -68,10 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Datos de respuesta JSON:', resultado);
             
             if (resultado.status === "Success") {
-                // Acceder al token dentro de data si existe
+
                 console.log('Datos en la respuesta:', resultado.data);
-                
-                // Buscar token en data
+         
                 const token = resultado.token || (resultado.data && resultado.data.token);
                 console.log("Login exitoso, guardando token:", token);
                 
@@ -79,11 +78,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.setItem('token', token);
                 } else {
                     console.warn("No se recibió token en la respuesta");
-                    // Guardamos un token vacío para evitar errores
+        
                     localStorage.setItem('token', 'temp_token');
                 }
                 
-                // Guardar directamente el objeto data como usuario si no hay jugador específico
+              
                 if (resultado.jugador) {
                     localStorage.setItem('usuario', JSON.stringify(resultado.jugador));
                     console.log("Información de usuario guardada:", resultado.jugador);
@@ -92,14 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log("Información de usuario guardada desde data:", resultado.data);
                 } else {
                     console.warn("No se recibió información del jugador en la respuesta");
-                    // Crear objeto de usuario mínimo
+                   
                     localStorage.setItem('usuario', JSON.stringify({nickname: nickname}));
                 }
                 
-                // Mostrar mensaje de éxito
+             
                 alert('¡Inicio de sesión exitoso! Redirigiendo a tu perfil...');
                 
-                // Redirigir directamente a la página de perfil
+              
                 window.location.href = "perfil.html";
                 
                 return false;

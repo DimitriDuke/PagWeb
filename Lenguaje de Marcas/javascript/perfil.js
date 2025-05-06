@@ -5,19 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let datosUsuario = null;
     const elementos = {};
     
-    // Inicializar referencias a elementos DOM
     function inicializarElementosDOM() {
-        // Elementos básicos
+        // Elementos básicos (mantener los que ya existen)
         ['perfil-info', 'loading', 'estadisticas', 'loading-stats', 'error-message',
          'loading-partidas', 'partidas-container', 'no-partidas', 'partidas-body',
          'nickname', 'email', 'edad', 'total-partidas', 'promedio-puntos', 'mejor-nivel',
          'mejor-puntuacion', 'mejor-puntuacion-fecha', 'mejor-tiempo', 'mejor-tiempo-fecha',
          'btnEditarPerfil', 'modal-editar', 'form-editar-perfil', 'edit-nickname', 
-         'edit-email', 'edit-edad', 'btnLogout'].forEach(id => {
+         'edit-email', 'edit-edad', 'btnLogout', 
+         // Nuevos elementos para eliminar cuenta
+         'btnEliminarCuenta', 'modal-confirmar', 'btnCancelarEliminar', 'btnConfirmarEliminar'].forEach(id => {
             elementos[id] = document.getElementById(id);
         });
         
+        // Mantener referencias existentes
         elementos.closeModal = document.querySelector('.close');
+        elementos.closeConfirmModal = document.querySelector('.close-confirm');
     }
     
     // Cargar datos del usuario
@@ -243,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Intentando cargar datos desde API...');
             const nickname = datosUsuario.nickname;
             
-            const respuesta = await fetch(`http://192.168.126.129:8080/api/jugador/nickname/${nickname}`, {
+            const respuesta = await fetch(`http://192.168.92.130:8080/api/jugador/nickname/${nickname}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -296,6 +299,64 @@ document.addEventListener('DOMContentLoaded', () => {
         // Intentar obtener datos actualizados
         await cargarPerfilDesdeAPI();
     }
+
+    // Función para mostrar el modal de confirmación
+function mostrarModalConfirmacion() {
+    if (elementos['modal-confirmar']) {
+        elementos['modal-confirmar'].style.display = 'block';
+    }
+}
+
+// Función para cerrar el modal de confirmación
+function cerrarModalConfirmacion() {
+    if (elementos['modal-confirmar']) {
+        elementos['modal-confirmar'].style.display = 'none';
+    }
+}
+
+// Función para eliminar la cuenta del jugador
+async function eliminarCuenta() {
+    try {
+        const usuarioId = datosUsuario.id;
+        if (!usuarioId) throw new Error('ID de usuario no encontrado');
+        
+        mostrarError('Eliminando cuenta...', false);
+        
+        // Llamar a la API para eliminar el jugador
+        const respuesta = await fetch(`http://192.168.92.130:8080/api/eliminarJugador/${usuarioId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        
+        // Verificar tipo de respuesta
+        const contentType = respuesta.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const textoRespuesta = await respuesta.text();
+            console.log('Respuesta no JSON:', textoRespuesta);
+            throw new Error('Respuesta no válida del servidor');
+        }
+        
+        const resultado = await respuesta.json();
+        console.log('Resultado de eliminación:', resultado);
+        
+        if (resultado.status === "Success") {
+            // Limpiar datos de localStorage
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
+            
+            // Mostrar mensaje y redirigir
+            alert('Cuenta eliminada correctamente. Serás redirigido a la página de inicio.');
+            window.location.href = 'index.html';
+        } else {
+            mostrarError(`Error: ${resultado.message}`);
+            cerrarModalConfirmacion();
+        }
+    } catch (error) {
+        console.error('Error al eliminar cuenta:', error);
+        mostrarError('Error al eliminar la cuenta. Intenta más tarde.');
+        cerrarModalConfirmacion();
+    }
+}
     
     // Actualizar perfil
     async function actualizarPerfil(event) {
@@ -312,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             console.log('Datos para actualizar:', { email, edad });
             
-            const respuesta = await fetch(`http://192.168.126.129:8080/api/modificarJugador/${usuarioId}`, {
+            const respuesta = await fetch(`http://192.168.92.130:8080/api/modificarJugador/${usuarioId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, edad })
@@ -330,14 +391,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Resultado:', resultado);
             
             if (resultado.status === "Success") {
-                // Cerrar modal
+       
                 if (elementos['modal-editar']) elementos['modal-editar'].style.display = 'none';
                 
-                // Actualizar información
+      
                 if (elementos.email) elementos.email.textContent = email;
                 if (elementos.edad) elementos.edad.textContent = edad || 'No especificada';
                 
-                // Actualizar localStorage
+            
                 datosUsuario.email = email;
                 datosUsuario.edad = edad;
                 localStorage.setItem('usuario', JSON.stringify(datosUsuario));
@@ -352,30 +413,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Configurar eventos UI
     function configurarEventosUI() {
-        // Editar perfil
+        // Mantener eventos existentes
         if (elementos.btnEditarPerfil) {
             elementos.btnEditarPerfil.addEventListener('click', () => {
                 if (elementos['modal-editar']) elementos['modal-editar'].style.display = 'block';
             });
         }
         
-        // Cerrar modal con X
         if (elementos.closeModal) {
             elementos.closeModal.addEventListener('click', () => {
                 if (elementos['modal-editar']) elementos['modal-editar'].style.display = 'none';
             });
         }
-        
-        // Cerrar modal al hacer clic fuera
+       
         window.addEventListener('click', (event) => {
             if (elementos['modal-editar'] && event.target === elementos['modal-editar']) {
                 elementos['modal-editar'].style.display = 'none';
             }
+            if (elementos['modal-confirmar'] && event.target === elementos['modal-confirmar']) {
+                elementos['modal-confirmar'].style.display = 'none';
+            }
         });
         
-        // Enviar formulario de edición
         if (elementos['form-editar-perfil']) {
             elementos['form-editar-perfil'].addEventListener('submit', actualizarPerfil);
         }
@@ -387,6 +447,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.removeItem('usuario');
                 window.location.href = 'pagina-login.html';
             });
+        }
+        
+        // Nuevos eventos para eliminar cuenta
+        if (elementos.btnEliminarCuenta) {
+            elementos.btnEliminarCuenta.addEventListener('click', mostrarModalConfirmacion);
+        }
+        
+        if (elementos.btnCancelarEliminar) {
+            elementos.btnCancelarEliminar.addEventListener('click', cerrarModalConfirmacion);
+        }
+        
+        if (elementos.closeConfirmModal) {
+            elementos.closeConfirmModal.addEventListener('click', cerrarModalConfirmacion);
+        }
+        
+        if (elementos.btnConfirmarEliminar) {
+            elementos.btnConfirmarEliminar.addEventListener('click', eliminarCuenta);
         }
     }
     

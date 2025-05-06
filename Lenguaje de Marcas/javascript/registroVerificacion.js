@@ -57,11 +57,11 @@ form.addEventListener('submit', async function(event){
     } 
     
     try {
-        // Cambiar la URL para que coincida con tu API
-        const respuesta = await fetch('http://192.168.126.129:8080/api/anadirJugador', {
+       
+        const respuesta = await fetch('http://192.168.92.130:8080/api/anadirJugador', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // Cambiar los nombres de las propiedades para que coincidan con el backend
+      
             body: JSON.stringify({ 
                 nickname: nickname, 
                 email: email, 
@@ -72,11 +72,10 @@ form.addEventListener('submit', async function(event){
         const resultado = await respuesta.json();
         
         if (resultado.status === "Success") {
-            // Si el registro es exitoso, redirigir al login
             alert("Registro exitoso. Ahora puedes iniciar sesión.");
             window.location.href = "pagina-login.html";
         } else {
-            // Si hay un error, mostrar el mensaje de error
+  
             mostrarError(resultado.message, document.querySelector('.submit'));
         }
     } catch (error) {

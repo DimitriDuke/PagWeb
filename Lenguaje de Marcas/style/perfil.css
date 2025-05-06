@@ -304,3 +304,39 @@
         flex-direction: column;
     }
 }
+
+.btn-danger {
+    background-color: #cc1616;
+    margin-left: 10px;
+}
+
+.btn-danger:hover {
+    background-color: #aa1414;
+}
+
+.confirm-modal .modal-content {
+    text-align: center;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.confirm-cancel {
+    background-color: #555;
+}
+
+.confirm-cancel:hover {
+    background-color: #444;
+}
+
+.confirm-delete {
+    background-color: #cc1616;
+}
+
+.confirm-delete:hover {
+    background-color: #aa1414;
+}
