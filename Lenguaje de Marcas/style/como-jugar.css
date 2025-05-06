@@ -56,11 +56,42 @@ nav.menu a:hover {
 }
 
 main {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    text-align: center;
+    box-sizing: border-box;
 }
 
 main p {
     font-size: 18px;
     line-height: 1.6;
+}
+
+.seccionControles {
+    color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.listaControles {
+    padding: 0;
+    text-align: left;
+    margin: 0;
+  }
+  
+  .listaControles li {
+    margin-bottom: 10px;
+  }
+
+.descripcionControles {
+    max-width: 300px; 
+    text-align: right;
+}
+
+.seccionControles img {
+    max-width: 50%;
+    height: auto;
 }

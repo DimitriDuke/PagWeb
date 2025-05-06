@@ -1,16 +1,30 @@
-var apartado = document.querySelector(".apartado");
+document.addEventListener("DOMContentLoaded", function () {
+    var apartadoInfo = document.querySelector(".apartadoInfo")
+    var apartadoComoJugar = document.querySelector(".apartadoComoJugar")
+    var apartado = document.querySelector(".apartado");
+    var apartado2 = document.querySelector(".apartado2");
+    var apartado3 = document.querySelector(".apartado3");
 
-//window.addEventListener("scroll", function()());
+    setTimeout(function () {
+        apartadoComoJugar.classList.add("aparecer-apartadoComoJugar")
+    }, 200);
 
-window.onscroll = function()
-{
-    apartado.classList.add(".aparecer-apartado");
+    setTimeout(function () {
+        apartadoInfo.classList.add("aparecer-apartadoInfo")
+    }, 200);
 
-    var distancia = window.innerHeight - apartado.getBoundingClientRect().top;
-    if(distancia >= 38)
-    {
+    setTimeout(function () {
         apartado.classList.add("aparecer-apartado");
-    }
+        
+    }, 300);
 
-    console.log(distancia);
-};
+    setTimeout(function () {
+        apartado2.classList.add("aparecer-apartado2");
+        
+    }, 500);
+
+    setTimeout(function () {
+        apartado3.classList.add("aparecer-apartado3");
+        
+    }, 700);
+});

@@ -135,18 +135,77 @@ main div {
     line-height: 1.6;
 }
 
-.apartado {
-    margin-top: 250px;
+.apartado, .apartado2, .apartado3 {
+    margin-top: 80px;
     color: #4CAF50;
     background-color: #333;
     transition: all 0.5s linear;
+    border-radius: 12px;
+    padding-bottom: 10px;
+    -webkit-box-shadow: 3px 0px 10px 0px black;
+    -moz-box-shadow: 3px 0px 10px 0px black;
+    box-shadow: 3px 0px 10px 0px black;
+    border: 2px solid #4CAF50;
+    padding: 10px;
+
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    color: white;
 
     opacity: 0;
 
 }
 
-.aparecer-apartado {
+.apartadoInfo, .apartadoComoJugar {
+    margin-top: 90px;
+    padding: 15px;
+    padding-bottom: 15px;
+    color: #4CAF50;
+    background-color: #333;
+    transition: all 0.5s linear;
+    border-radius: 12px;
+    padding-bottom: 10px;
+    -webkit-box-shadow: 3px 0px 10px 0px black;
+    -moz-box-shadow: 3px 0px 10px 0px black;
+    box-shadow: 3px 0px 10px 0px black;
+    border: 2px solid #4CAF50;
+
+    opacity: 0;
+}
+
+.aparecer-apartado, .aparecer-apartado2, .aparecer-apartado3, .aparecer-apartadoInfo, .aparecer-apartadoComoJugar {
     opacity: 1;
+}
+
+.texto-contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.descripcion {
+    color: white;
+}
+
+#informacion-button, #comojugar-button, #clasificacion-button, #descargajuego-button {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: 1s;
+}
+
+#comojugar-button:hover, #informacion-button:hover, #clasificacion-button:hover, #descargajuego-button:hover {
+    background-color: white;
+    color: #4CAF50;
 }
 
 /* Estilos para usuarios autenticados */
