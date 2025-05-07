@@ -76,6 +76,11 @@ main p {
     gap: 20px;
 }
 
+.comojugar-descripcion {
+    text-align: center;
+    color: white;
+}
+
 .listaControles {
     padding: 0;
     text-align: left;

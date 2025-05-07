@@ -188,8 +188,21 @@ main div {
     justify-content: center;
 }
 
+.titulo-texto {
+    text-align: center;
+}
+
+.inicio-titulo-texto {
+    text-align: left;
+}
+
 .descripcion {
     color: white;
+}
+
+.inicio-descripcion {
+    color: white;
+    text-align: left;
 }
 
 #informacion-button, #comojugar-button, #clasificacion-button, #descargajuego-button {

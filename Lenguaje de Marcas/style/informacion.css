@@ -64,3 +64,8 @@ main p {
     font-size: 18px;
     line-height: 1.6;
 }
+
+.informacion-descripcion {
+    text-align: center;
+    color: white;
+}
